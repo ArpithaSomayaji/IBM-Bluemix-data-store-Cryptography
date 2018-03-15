@@ -1,0 +1,5 @@
+---
+applications:
+ - name: ArpithaSomayaji_CloudAssignment1
+   random-route: true
+   memory: 128M

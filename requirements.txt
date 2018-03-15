@@ -1,0 +1,5 @@
+Flask==0.12.2
+cf-deployment-tracker==1.0.4
+cloudant==2.4.0
+python-keystoneclient==3.15.0
+python-swiftclient==2.6.0

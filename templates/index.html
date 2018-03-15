@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IBM Bluemix</title>
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/styles.css" rel="stylesheet">
+    <style>
+table, th, td {
+    border: 1px solid black;
+}
+td,th {
+    padding: 10px;
+}
+</style>
+</head>
+
+
+<body>
+
+
+    <div class="container">
+         <br/>
+        <a href="/"><u>Home</u></a>
+        <br/>
+
+        <br/>
+        <h1>Welcome To Cloud !!!</h1>
+         <h1>Arpitha Somayaji - 1001398103</h1>
+
+    <h3><b><u>Upload File</u></b> </h3>
+    <form action="/uploadfile" method="post" enctype = "multipart/form-data">
+    <input type="file" name="fileName">
+        <input type="submit"></form>
+<br/>
+
+          <h3><b><u>see firstline of  File</u></b> </h3>
+    <form action="/seeFirstLine" method="post" enctype = "multipart/form-data">
+    <input type="text" name="fileName">
+        <input type="submit"></form>
+<br/>
+        <h3><b><u>change name of all files in a folder</u></b> </h3>
+    <form action="/changeFileName" method="post" enctype = "multipart/form-data">
+    <input type="text" name="changeText">
+    <input type="submit">
+    </form>
+
+
+
+{%if resultText%}
+        <h5>{{resultText}}  </h5>
+       {% endif %}
+
+    </form>
+
+        <hr/>
+
+        <h3><b><u>Container :</u></b>  <i>     {{ result }}</i></h3>
+
+    <table  >
+         <tr >
+        <th>Name</th>
+        <th>Size  (Bytes)</th>
+        <th>Time</th>
+             <th>Action </th>
+              {% for d in result2 %}
+        <tr>
+            <td>{{ d.name }}</td>
+            <td>{{ d.bytes }}</td>
+            <td>{{ d.last_modified }}</td>
+        <td>
+
+         <form action="/downloadfile" method="post" enctype = "multipart/form-data">
+             <input type="hidden" name="fileName" value={{d.name}}>
+    <button type="submit">Download</button>
+    </form>
+<br/>
+        <form action="/deletefile" method="post" enctype = "multipart/form-data">
+             <input type="hidden" name="fileName" value={{d.name}}>
+    <button type="submit">Delete</button>
+    </form></td>
+        </tr>
+    {% endfor %}
+
+        </tr>
+    </table>
+
+        <h1> Total size : {{result3}}</h1>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="static/antixss.js" type="text/javascript"></script>
+
+</div>
+</body>
+
+</html>
